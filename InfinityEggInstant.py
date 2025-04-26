@@ -1,6 +1,7 @@
 import time
 import streamlit as st
 import random
+import math
 from collections import defaultdict
 
 # Pet Pools
@@ -84,7 +85,7 @@ if st.button("Run Simulation"):
     if time_based:
         num_hatches = (time_spent*(hatch_speed*0.025))*eggs_to_open
 
-    iterations = num_hatches // eggs_to_open
+    iterations = math.trunc(num_hatches) // eggs_to_open
 
     # Simulation without animation (Instant hatch, no delay)
     for batch in range(iterations):
