@@ -66,7 +66,7 @@ eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
 skip_animation = st.checkbox("Skip Animation (Instant Results)")
 if time_based:
     num_hatches = math.trunc((time_spent*(hatch_speed*0.025))*eggs_to_open)
-    str_num_hatches = st.text(str(num_hatches))
+    str_num_hatches = st.text("Number of Eggs Hatched: " + str(num_hatches))
 
 # Track pet hatch history
 results = defaultdict(int)
