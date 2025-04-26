@@ -53,7 +53,7 @@ def apply_multipliers(pet, shiny_chance, mythic_chance):
 # GUI
 time_based = st.checkbox("Use Time & Hatch Speed instead of Number of Eggs")
 if time_based:
-    time_spent = st.number_input("Time Spent Hatching (Minutes)", min_value=1, max_value=10_000_000, value=60, step=10)
+    time_spent = st.number_input("Time Spent Hatching (Minutes)", min_value=0, max_value=10_000_000, value=60, step=10)
     hatch_speed = st.number_input("Hatch Speed", min_value=1, max_value=1000, value=160, step=10)
 else:
     num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
@@ -158,7 +158,7 @@ if st.button("Run Simulation"):
             for i in range(eggs_to_open):
                 test = st.text(hatch_speed*0.015625)
                 egg_placeholders[i].write(f"🪺 Hatching... {current_eggs[i] if i < len(current_eggs) else ''}")
-            time.sleep(1-hatch_speed*0.015625)
+            time.sleep(hatch_speed*0.015625)
             for placeholder in egg_placeholders:
                 placeholder.empty()
 
