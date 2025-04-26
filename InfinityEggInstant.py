@@ -55,7 +55,7 @@ st.title("Infinity Egg Simulator")
 time_based = st.checkbox("Use Time & Hatch Speed instead of Number of Eggs")
 if time_based:
     time_spent = st.number_input("Time Spent Hatching (Minutes)", min_value=1, max_value=10_000_000, value=60, step=10)
-    hatch_speed = st.slider("Hatch Speed", 1, 480, 160, 0)
+    hatch_speed = st.slider("Hatch Speed", 1, 480, 160, 10)
 else:
     num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
 luck_multiplier = st.slider("Luck Multiplier", 1.0, 27.0, 1., 0.1)
