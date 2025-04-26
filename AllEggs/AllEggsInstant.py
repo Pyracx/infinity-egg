@@ -19,7 +19,7 @@ petlist = {
 }
 
 first_column = st.columns([0.25, 0.75])
-chosen_pet = st.selectbox("Pet", petlist, None)
+chosen_pet = st.selectbox("Pet", petlist)
 pet_image = st.image("https://www.bgsi.gg/items/"+ str(chosen_pet).replace(' ', '-').lower() +".png")
 pet_name = st.text(chosen_pet)
-rarity = st.text(str(petlist[chosen_pet] + "%"))
+rarity = st.text(str(petlist[chosen_pet]) + "%")
