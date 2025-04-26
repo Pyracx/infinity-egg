@@ -1,4 +1,5 @@
 import streamlit as st
+import math
 
 petlist = {
     "Emerald Golem": 0.5,
