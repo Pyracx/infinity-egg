@@ -66,7 +66,7 @@ eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
 speed_warp = st.slider("Speed that you want the simulation to go at", 1, 1, 100)
 skip_animation = st.checkbox("Skip Animation (Instant Results)")
 if time_based:
-    num_hatches = math.trunc(((time_spent*(13.75*hatch_speed))*eggs_to_open)*60)
+    num_hatches = math.trunc(((time_spent*(0.36666*hatch_speed))*eggs_to_open)*60)
     str_num_hatches = st.text("Number of Eggs Hatched: " + str(num_hatches))
 
 # Track pet hatch history
