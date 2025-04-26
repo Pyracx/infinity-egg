@@ -82,7 +82,7 @@ if st.button("Run Simulation"):
     tier3_chance = TIER3_BASE_CHANCE * luck_multiplier
 
     if time_based:
-        num_hatches = time_spent*36
+        num_hatches = (time_spent*(hatch_speed*0.025))*eggs_to_open
 
     iterations = num_hatches // eggs_to_open
 
