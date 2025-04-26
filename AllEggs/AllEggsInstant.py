@@ -18,8 +18,10 @@ petlist = {
     "Rainbow Shock": 0.0005,
 }
 
-first_column = st.columns([0.25, 0.75])
+col1, col2 = st.columns([0.3, 0.7])
 chosen_pet = st.selectbox("Pet", petlist)
-pet_image = st.image("https://www.bgsi.gg/items/"+ str(chosen_pet).replace(' ', '-').lower() +".png")
-pet_name = st.text(chosen_pet)
-rarity = st.text(str(petlist[chosen_pet]) + "%")
+with col1:
+    pet_name = st.title(chosen_pet)
+    pet_image = st.image("https://www.bgsi.gg/items/"+ str(chosen_pet).replace(' ', '-').lower() +".png")
+with col2:
+    rarity = st.text(str(petlist[chosen_pet]) + "%")
