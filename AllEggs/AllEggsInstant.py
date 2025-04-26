@@ -34,5 +34,6 @@ if chosen_pet != None:
         pet_name = st.title(chosen_pet)
         pet_image = st.image("https://www.bgsi.gg/items/"+ str(chosen_pet).replace(' ', '-').lower() +".png")
     with col2:
+        stats_title = st.title("Stats")
         rarity_text = st.text(str(petlist[chosen_pet]) + "%")
-        num_hatches = st.text("Average Number of Hatches: " + str(1/(rarity/100)))
+        num_hatches = st.text("Average Number of Hatches: " + str(round(1/(rarity/100))))
