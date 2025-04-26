@@ -53,7 +53,7 @@ def apply_multipliers(pet, shiny_chance, mythic_chance):
 st.title("Infinity Egg Simulator")
 
 num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
-luck_multiplier = st.slider("Luck Multiplier", 1.0, 2007.0, 1., 0.1)
+luck_multiplier = st.slider("Luck Multiplier", 1.0, 27.0, 1., 0.1)
 shiny_chance = st.slider("Shiny Chance (1 in X)", 13, 40, 40)
 mythic_chance = st.slider("Mythic Chance (1 in X)", 12, 100, 100)
 eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
