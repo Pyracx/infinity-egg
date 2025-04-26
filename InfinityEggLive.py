@@ -63,7 +63,7 @@ luck_multiplier = st.slider("Luck Multiplier", 1.0, 27.0, 1., 0.1)
 shiny_chance = st.slider("Shiny Chance (1 in X)", 13, 40, 40)
 mythic_chance = st.slider("Mythic Chance (1 in X)", 12, 100, 100)
 eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
-speed_warp = st.slider("Speed that you want the simulation to go at", 1, 1, 100)
+speed_warp = st.slider("Simulation Speed", 1, 1, 100)
 skip_animation = st.checkbox("Skip Animation (Instant Results)")
 if time_based:
     num_hatches = math.trunc(((time_spent*(0.1375*hatch_speed))*eggs_to_open))
@@ -160,7 +160,7 @@ if st.button("Run Simulation"):
             for i in range(eggs_to_open):
                 test = st.text(num_hatches/(time_spent*60))
                 egg_placeholders[i].write(f"🪺 Hatching... {current_eggs[i] if i < len(current_eggs) else ''}")
-            time.sleep(num_hatches/(time_spent*60))
+            time.sleep(num_hatches/((time_spent*60)*speed_warp))
             for placeholder in egg_placeholders:
                 placeholder.empty()
 
