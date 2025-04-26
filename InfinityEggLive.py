@@ -66,7 +66,7 @@ eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
 speed_warp = st.slider("Speed that you want the simulation to go at", 1, 1, 100)
 skip_animation = st.checkbox("Skip Animation (Instant Results)")
 if time_based:
-    num_hatches = math.trunc(((time_spent*(hatch_speed*0.025))*eggs_to_open)*6)
+    num_hatches = math.trunc(((time_spent*(13.75*(hatch_speed)))*eggs_to_open)*60)
     str_num_hatches = st.text("Number of Eggs Hatched: " + str(num_hatches))
 
 # Track pet hatch history
@@ -158,9 +158,9 @@ if st.button("Run Simulation"):
 
             # Animation (with time delay) in regular mode
             for i in range(eggs_to_open):
-                test = st.text(hatch_speed*0.015625)
+                test = st.text(num_hatches/(time_spent*60))
                 egg_placeholders[i].write(f"🪺 Hatching... {current_eggs[i] if i < len(current_eggs) else ''}")
-            time.sleep(hatch_speed*0.015625)
+            time.sleep(num_hatches/(time_spent*60))
             for placeholder in egg_placeholders:
                 placeholder.empty()
 
