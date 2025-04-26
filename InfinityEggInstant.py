@@ -65,7 +65,7 @@ mythic_chance = st.slider("Mythic Chance (1 in X)", 12, 100, 100)
 eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
 skip_animation = st.checkbox("Skip Animation (Instant Results)")
 if time_based:
-    num_hatches = (time_spent*(hatch_speed*0.025))*eggs_to_open
+    num_hatches = math.trunc((time_spent*(hatch_speed*0.025))*eggs_to_open)
     str_num_hatches = st.text(str(num_hatches))
 
 # Track pet hatch history
@@ -85,7 +85,7 @@ if st.button("Run Simulation"):
     secret_chance = SECRET_BASE_CHANCE * luck_multiplier
     tier3_chance = TIER3_BASE_CHANCE * luck_multiplier
 
-    iterations = math.trunc(num_hatches) // eggs_to_open
+    iterations = num_hatches // eggs_to_open
 
     # Simulation without animation (Instant hatch, no delay)
     for batch in range(iterations):
