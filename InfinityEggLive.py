@@ -158,7 +158,7 @@ if st.button("Run Simulation"):
             for i in range(eggs_to_open):
                 test =  st.text(i)
                 egg_placeholders[i].write(f"🪺 Hatching... {current_eggs[i] if i < len(current_eggs) else ''}")
-            time.sleep(hatch_speed/0.0025)
+            time.sleep(hatch_speed*0.0025)
             for placeholder in egg_placeholders:
                 placeholder.empty()
 
