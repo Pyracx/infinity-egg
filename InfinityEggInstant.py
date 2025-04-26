@@ -55,7 +55,7 @@ st.title("Infinity Egg Simulator")
 time_based = st.checkbox("Use Time & Hatch Speed instead of Number of Eggs")
 if time_based:
     time_spent = st.number_input("Time Spent Hatching (Minutes)", min_value=1, max_value=10_000_000, value=60, step=10)
-    hatch_speed = st.slider("Hatch Speed", 1, 480, 160, 10)
+    hatch_speed = st.number_input("Hatch Speed", min_value=1, max_value=1000, value=160, step=10)
 else:
     num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
 luck_multiplier = st.slider("Luck Multiplier", 1.0, 27.0, 1., 0.1)
@@ -80,6 +80,9 @@ if st.button("Run Simulation"):
 
     secret_chance = SECRET_BASE_CHANCE * luck_multiplier
     tier3_chance = TIER3_BASE_CHANCE * luck_multiplier
+
+    if time_based:
+        num_hatches = time_spent*36
 
     iterations = num_hatches // eggs_to_open
 
