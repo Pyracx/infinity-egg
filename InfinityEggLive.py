@@ -51,6 +51,8 @@ def apply_multipliers(pet, shiny_chance, mythic_chance):
     return pet
 
 # GUI
+st.title("Infinity Egg Simulator")
+
 time_based = st.checkbox("Use Time & Hatch Speed instead of Number of Eggs")
 if time_based:
     time_spent = st.number_input("Time Spent Hatching (Minutes)", min_value=0, max_value=10_000_000, value=60, step=10)
