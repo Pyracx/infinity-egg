@@ -20,6 +20,6 @@ petlist = {
 
 chosen_pet = st.selectbox("Pet", petlist, None)
 
-pet_image = st.image{"https://www.bgsi.gg/items/ethereal-bunny.png"}
+pet_image = st.image("https://www.bgsi.gg/items/ethereal-bunny.png")
 pet_name = st.text(chosen_pet)
 rarity = st.text(petlist[chosen_pet] + "%")
