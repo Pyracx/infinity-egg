@@ -18,4 +18,6 @@ petlist = {
     "Rainbow Shock": 0.0005,
 }
 
-test = st.selectbox("Pet", petlist, None)
+chosen_pet = st.selectbox("Pet", petlist, None)
+
+rarity = st.text(petlist[chosen_pet])
