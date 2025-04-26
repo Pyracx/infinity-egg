@@ -20,15 +20,13 @@ petlist = {
 }
 
 chosen_pet = st.selectbox("Pet", petlist, None)
-
+rarity = petlist[chosen_pet]
 
 hatch_speed = st.number_input("Hatch Speed (%)", min_value=1, max_value=1000, value=160, step=10)
-luck_multiplier = st.slider("Luck Multiplier", 1, 2700, 50, 1)
+luck_multiplier = st.number_input("Luck Multiplier (%)", min_value=1, max_value=1000, value=160, step=10)
 shiny_chance = st.slider("Shiny Chance (1 in X)", 13, 40, 40)
 mythic_chance = st.slider("Mythic Chance (1 in X)", 12, 100, 100)
 eggs_to_open = st.slider("Number of Eggs you Hatch at Once", 1, 6, 6)
-num_hatches = math.trunc(((time_spent*(0.1375*hatch_speed))*eggs_to_open))
-str_num_hatches = st.text("Number of Eggs Hatched: " + str(num_hatches))
 
 if chosen_pet != None:
     col1, col2 = st.columns([0.3, 0.7])
@@ -36,4 +34,5 @@ if chosen_pet != None:
         pet_name = st.title(chosen_pet)
         pet_image = st.image("https://www.bgsi.gg/items/"+ str(chosen_pet).replace(' ', '-').lower() +".png")
     with col2:
-        rarity = st.text(str(petlist[chosen_pet]) + "%")
+        rarity_text = st.text(str(petlist[chosen_pet]) + "%")
+        num_hatches = st.text("Average Number of Hatches: " + str(1/(rarity/100)))
