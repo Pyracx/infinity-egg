@@ -59,6 +59,7 @@ if time_based:
     hatch_speed = st.number_input("Hatch Speed", min_value=1, max_value=1000, value=160, step=10)
 else:
     num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
+    hatch_speed = st.slider("Egg Hatch Speed (seconds)", 0.1, 1.0, 0.5, 0.1)
 luck_multiplier = st.slider("Luck Multiplier", 1.0, 27.0, 1., 0.1)
 shiny_chance = st.slider("Shiny Chance (1 in X)", 13, 40, 40)
 mythic_chance = st.slider("Mythic Chance (1 in X)", 12, 100, 100)
@@ -160,7 +161,10 @@ if st.button("Run Simulation"):
             for i in range(eggs_to_open):
                 test = st.text(num_hatches/(time_spent*60))
                 egg_placeholders[i].write(f"🪺 Hatching... {current_eggs[i] if i < len(current_eggs) else ''}")
-            time.sleep(num_hatches/((time_spent*60)*speed_warp))
+            if time_based: 
+                time.sleep(num_hatches/((time_spent*60)*speed_warp))
+            else:
+                time.sleep(hatch_speed)
             for placeholder in egg_placeholders:
                 placeholder.empty()
 
