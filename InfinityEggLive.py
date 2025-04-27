@@ -1,6 +1,7 @@
 import time
 import streamlit as st
 import random
+import math
 from collections import defaultdict
 
 # Pet Pools
@@ -52,13 +53,22 @@ def apply_multipliers(pet, shiny_chance, mythic_chance):
 # GUI
 st.title("Infinity Egg Simulator")
 
-num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
+time_based = st.checkbox("Use Time & Hatch Speed instead of Number of Eggs (Beta)")
+if time_based:
+    time_spent = st.number_input("Time Spent Hatching (Minutes)", min_value=0, max_value=10_000_000, value=60, step=10)
+    hatch_speed = st.number_input("Hatch Speed", min_value=1, max_value=1000, value=160, step=10)
+else:
+    num_hatches = st.number_input("Number of Eggs to Simulate", min_value=1, max_value=10_000_000, value=100_000, step=1000)
+    hatch_speed = st.slider("Egg Hatch Speed (seconds)", 0.1, 1.0, 0.5, 0.1)
 luck_multiplier = st.slider("Luck Multiplier", 1.0, 27.0, 1., 0.1)
 shiny_chance = st.slider("Shiny Chance (1 in X)", 13, 40, 40)
 mythic_chance = st.slider("Mythic Chance (1 in X)", 12, 100, 100)
 eggs_to_open = st.slider("Number of Eggs to Hatch at Once", 1, 6, 6)
-hatch_speed = st.slider("Egg Hatch Speed (seconds)", 0.1, 1.0, 0.5, 0.1)
+speed_warp = st.slider("Simulation Speed", 1, 1, 100)
 skip_animation = st.checkbox("Skip Animation (Instant Results)")
+if time_based:
+    num_hatches = math.trunc(((time_spent*(0.1375*hatch_speed))*eggs_to_open))
+    str_num_hatches = st.text("Number of Eggs Hatched: " + str(num_hatches))
 
 # Track pet hatch history
 results = defaultdict(int)
@@ -149,8 +159,12 @@ if st.button("Run Simulation"):
 
             # Animation (with time delay) in regular mode
             for i in range(eggs_to_open):
+                test = st.text(num_hatches/(time_spent*60))
                 egg_placeholders[i].write(f"🪺 Hatching... {current_eggs[i] if i < len(current_eggs) else ''}")
-            time.sleep(hatch_speed)
+            if time_based: 
+                time.sleep(num_hatches/((time_spent*60)*speed_warp))
+            else:
+                time.sleep(hatch_speed)
             for placeholder in egg_placeholders:
                 placeholder.empty()
 
